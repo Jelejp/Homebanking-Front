@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 
 const TransactionForm = () => {
+  //DEFINO ESTADOS
   const [destinationType, setDestinationType] = useState('');
   const [originAccount, setOriginAccount] = useState('');
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  //FUNCION PARA MOSTRAR LA ALERTA AL ENVIAR FORM
+  const handleSubmit = () => {
     alert('Your transaction was successfully sent');
   };
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mt-10 lg:mt-6 w-[360px]">
-      <h2 className="text-2xl font-bold mb-4">Make a Transaction</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="destinationType" className="block text-gray-700 mb-2">Destination Type</label>

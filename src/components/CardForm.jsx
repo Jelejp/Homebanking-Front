@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 
 const CardForm = () => {
+  //DEFINO ESTADOS
   const [cardType, setCardType] = useState('');
   const [cardMembership, setCardMembership] = useState('');
 
+  //FUNCION PARA MOSTRAR ALERTA AL ENVIAR FORM
   const handleApply = () => {
     alert('Your card was successfully requested');
   };
 
+  //FUNCION PARA MOSTRAR LA ALERTA AL CANCELAR
   const handleCancel = () => {
     alert('Your request was canceled');
   };
 
   return (
-    <form onSubmit={(event) => event.preventDefault()} className="flex flex-col p-6 bg-white rounded-lg shadow-md mt-10 lg:lg:h-[265px]">
+    <form className="flex flex-col p-6 bg-white rounded-lg shadow-md mt-10 lg:lg:h-[265px]">
       <div className="mb-4">
         <label htmlFor="cardType" className="block text-gray-700 mb-2">Select Card Type</label>
         <select

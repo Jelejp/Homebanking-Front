@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const LoanForm = () => {
+  //DEFINO ESTADOS
   const [loanType, setLoanType] = useState('');
   const [account, setAccount] = useState('');
   const [amount, setAmount] = useState('');
@@ -8,10 +9,12 @@ const LoanForm = () => {
   const [maxAmount, setMaxAmount] = useState(0);
   const [paymentOptions, setPaymentOptions] = useState([]);
 
+  //FUNCION PARA CAMBIAR EL ESTADO DE LOANTYPE
   const handleLoanTypeChange = (event) => {
     const selectedLoan = event.target.value;
     setLoanType(selectedLoan);
 
+    //CONDICINAL DE CASOS 
     switch (selectedLoan) {
       case 'Mortgage':
         setMaxAmount(500000);
@@ -31,8 +34,8 @@ const LoanForm = () => {
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  //FUNCION PARA MOSTRAR LA ALERTA AL ENVIAR FORM
+  const handleSubmit = () => {
     alert('Your request was successfully sent');
   };
 
