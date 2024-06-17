@@ -2,13 +2,12 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className='bg-[#3089E4]  shadow-sm  p-3 flex justify-center items-center mt-3'>
-        <p> &copy;  All rights reserved 2024.</p>
+        <footer className='bg-[#000000] shadow-sm  p-3 flex justify-center items-center mt-3'>
+        <p className='text-white'> &copy;  2024 FlexBank. All rights reserved.</p>
         <div className='flex ml-4 justify-end items-end'>
-        <a href="https://twitter.com/home"><img src="src\assets\icons-twitterx.png" alt="twitter" /></a>
-        <a href="https://www.facebook.com/facebook/"><img src="src\assets\icons-facebook.png" alt="facebook" /></a>
-        <a href="https://www.instagram.com"><img src="src\assets\icons-instagram.png" alt="instagram" /></a>
-        <a href="https://web.whatsapp.com"><img src="src\assets\icons-whatsapp.png" alt="whatsapp" /></a>
+        <a href="https://github.com/Jelejp"><img className='w-[35px]' src="src\assets\icons8-github-48.png" alt="github" /></a>
+        <a href="https://ar.linkedin.com/"><img className='w-[35px]' src="src\assets\icons8-linkedin-48.png" alt="facebook" /></a>
+        <a href="https://www.instagram.com"><img className='w-[35px]' src="src\assets\icons8-instagram-48.png" alt="instagram" /></a>
         </div>
       </footer>
     );

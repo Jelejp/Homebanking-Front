@@ -1,20 +1,93 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const TransactionForm = () => {
-  //DEFINO ESTADOS
+  // DEFINO ESTADOS
   const [destinationType, setDestinationType] = useState('');
-  const [originAccount, setOriginAccount] = useState('');
+  const [sourceAccount, setSourceAccount] = useState('');
+  const [destinationAccount, setDestinationAccount] = useState('');
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
+  const [accounts, setAccounts] = useState([]); 
 
-  //FUNCION PARA MOSTRAR LA ALERTA AL ENVIAR FORM
-  const handleSubmit = () => {
-    alert('Your transaction was successfully sent');
+  // FUNCION PARA ENVIAR FORM
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const fullSourceAccount = `VIN-${sourceAccount}`;
+    const fullDestinationAccount = `VIN-${destinationAccount}`;
+
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        // alert('No token found. Please login again.');
+        toast.error('No token found. Please login again.', {
+          position: 'top-center'
+        });
+        return;
+      }
+
+      const response = await axios.post('http://localhost:8080/api/transactions/', { 
+        amount: parseFloat(amount), 
+        description, 
+        sourceAccount: fullSourceAccount, 
+        destinationAccount: fullDestinationAccount
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      console.log(response.data);
+      // alert('Your transaction was successfully sent');
+      toast.success('Your transaction was successfully sent', {
+        position: 'top-center'
+      });
+      
+    } catch (error) {
+      console.log('Error al realizar la transferencia', error);
+      if (error.response && error.response.status === 403) {
+        alert('You do not have permission to perform this transaction.');
+      } else {
+        // alert('Error to transaction');
+        toast.error(error.response.data, {
+          position: 'top-center'
+        });
+      }
+    }
   };
+
+  // FUNCION PARA OBTENER ACCOUNTS
+  const getAccounts = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        alert('No token found. Please login again.');
+        return;
+      }
+
+      const response = await axios.get('http://localhost:8080/api/clients/current/accounts', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      console.log(response.data);
+      setAccounts(response.data); // Almacena las cuentas en el estado
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAccounts();
+  }, []);
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mt-10 lg:mt-6 w-[360px]">
       <form onSubmit={handleSubmit}>
+        {/* DESTINATION TYPE */}
         <div className="mb-4">
           <label htmlFor="destinationType" className="block text-gray-700 mb-2">Destination Type</label>
           <div>
@@ -40,19 +113,42 @@ const TransactionForm = () => {
             </label>
           </div>
         </div>
+        {/* DESTINATION ACCOUNT */}
         <div className="mb-4">
-          <label htmlFor="originAccount" className="block text-gray-700 mb-2">Origin Account</label>
+          <label htmlFor="destinationAccount" className="block text-gray-700 mb-2">Destination Account</label>
+          <div className="flex">
+            <span className="flex items-center px-3 bg-gray-200 border border-r-0 border-gray-300 rounded-l">
+              VIN-
+            </span>
+            <input
+              type="text"
+              id="destinationAccount"
+              value={destinationAccount}
+              onChange={(event) => setDestinationAccount(event.target.value)}
+              className="block w-full p-2 border border-gray-300 rounded-r"
+            />
+          </div>
+        </div>
+        {/* SOURCE ACCOUNT */}
+        <div className="mb-4">
+          <label htmlFor="sourceAccount" className="block text-gray-700 mb-2">Origin Account</label>
           <select
-            id="originAccount"
-            value={originAccount}
-            onChange={(event) => setOriginAccount(event.target.value)}
+            id="sourceAccount"
+            value={sourceAccount}
+            onChange={(event) => setSourceAccount(event.target.value)}
             className="block w-full p-2 border border-gray-300 rounded"
           >
             <option value="" disabled>Select an account</option>
-            <option value="VIN0001">VIN0001</option>
-            <option value="VIN0002">VIN0002</option>
+            {
+              accounts.map((account) => (
+                <option key={account.id} value={account.number.replace('VIN-', '')}>
+                  {account.number}
+                </option>
+              ))
+            }
           </select>
         </div>
+        {/* AMOUNT */}
         <div className="mb-4">
           <label htmlFor="amount" className="block text-gray-700 mb-2">Amount</label>
           <div className="relative">
@@ -66,6 +162,7 @@ const TransactionForm = () => {
             />
           </div>
         </div>
+        {/* DESCRIPTION */}
         <div className="mb-4">
           <label htmlFor="description" className="block text-gray-700 mb-2">Description</label>
           <input
@@ -76,6 +173,7 @@ const TransactionForm = () => {
             className="block w-full p-2 border border-gray-300 rounded"
           />
         </div>
+        {/* BUTTON */}
         <button
           type="submit"
           className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700"

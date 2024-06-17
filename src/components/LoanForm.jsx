@@ -1,46 +1,121 @@
-import React, { useState } from 'react';
+
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const LoanForm = () => {
-  //DEFINO ESTADOS
   const [loanType, setLoanType] = useState('');
   const [account, setAccount] = useState('');
   const [amount, setAmount] = useState('');
   const [paymentTerm, setPaymentTerm] = useState('');
   const [maxAmount, setMaxAmount] = useState(0);
   const [paymentOptions, setPaymentOptions] = useState([]);
+  const [accounts, setAccounts] = useState([]);
+  const [sourceAccount, setSourceAccount] = useState('');
+  const [loans, setLoans] = useState([]);
 
-  //FUNCION PARA CAMBIAR EL ESTADO DE LOANTYPE
   const handleLoanTypeChange = (event) => {
-    const selectedLoan = event.target.value;
-    setLoanType(selectedLoan);
+    const selectedLoanId = parseInt(event.target.value, 10);
+    setLoanType(selectedLoanId);
 
-    //CONDICINAL DE CASOS 
-    switch (selectedLoan) {
-      case 'Mortgage':
-        setMaxAmount(500000);
-        setPaymentOptions([12, 24, 36, 48, 60]);
-        break;
-      case 'Personal':
-        setMaxAmount(100000);
-        setPaymentOptions([6, 12, 24]);
-        break;
-      case 'Automotive':
-        setMaxAmount(300000);
-        setPaymentOptions([6, 12, 24]);
-        break;
-      default:
-        setMaxAmount(0);
-        setPaymentOptions([]);
+    const selectedLoan = loans.find(loan => loan.id === selectedLoanId);
+    console.log('Selected Loan:', selectedLoan);
+
+    if (selectedLoan) {
+      setMaxAmount(selectedLoan.maxAmount);
+      setPaymentOptions(selectedLoan.availableIntallments || []);
+    } else {
+      setMaxAmount(0);
+      setPaymentOptions([]);
     }
   };
 
-  //FUNCION PARA MOSTRAR LA ALERTA AL ENVIAR FORM
-  const handleSubmit = () => {
-    alert('Your request was successfully sent');
+  const getAccounts = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        alert('No token found. Please login again.');
+        return;
+      }
+
+      const response = await axios.get('http://localhost:8080/api/clients/current/accounts', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      console.log('Accounts:', response.data);
+      setAccounts(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getLoans = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      let response = await axios.get('http://localhost:8080/api/loans', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      console.log('Loans:', response.data);
+      setLoans(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAccounts();
+    getLoans();
+  }, []);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    try {
+      const token = localStorage.getItem('token');
+      const data = {
+        loandId: parseInt(loanType, 10), // Convertir loanType a número
+        destinationAccount: `VIN-${sourceAccount}`, 
+        amount: parseFloat(amount), // Convertir amount a número
+        installments: parseInt(paymentTerm, 10) // Convertir paymentTerm a número
+      };
+
+      console.log('Data to be sent:', data);
+
+      if (data.destinationAccount <= 0 || data.installments <= 0) {
+        // alert("Loan amount and installments must be greater than 0");
+        toast.error('Loan amount and installments must be greater than 0', {
+          position: 'top-center'
+        });
+        return;
+      }
+
+      let response = await axios.post('http://localhost:8080/api/loans', data, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      console.log(response.data);
+      // alert('Your request was successfully sent');
+      toast.success('Your request was successfully sent', {
+        position: 'top-center'
+      });
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+        console.log('Response data:', error.response.data);
+        toast.error(error.response.data, {
+          position: 'top-center'
+        });
+      }
+    }
   };
 
   return (
-    <div className="flex flex-col p-6 bg-white rounded-lg shadow-md mt-5 w-[350px] lg:h-[525px]" >
+    <div className="flex flex-col p-6 bg-white rounded-lg shadow-md mt-5 w-[350px] lg:h-[525px]">
       <h2 className="text-2xl font-bold mb-4">Select Loan</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -52,22 +127,25 @@ const LoanForm = () => {
             className="block w-full p-2 border border-gray-300 rounded"
           >
             <option value="" disabled>Select a loan type</option>
-            <option value="Mortgage">Mortgage</option>
-            <option value="Personal">Personal</option>
-            <option value="Automotive">Automotive</option>
+            {loans.map((loan) => (
+              <option key={loan.id} value={loan.id}>{loan.name}</option>
+            ))}
           </select>
         </div>
         <div className="mb-4">
-          <label htmlFor="account" className="block text-gray-700 mb-2">Source account</label>
+          <label htmlFor="sourceAccount" className="block text-gray-700 mb-2">Source Account</label>
           <select
-            id="account"
-            value={account}
-            onChange={(event) => setAccount(event.target.value)}
+            id="sourceAccount"
+            value={sourceAccount}
+            onChange={(event) => setSourceAccount(event.target.value)}
             className="block w-full p-2 border border-gray-300 rounded"
           >
             <option value="" disabled>Select an account</option>
-            <option value="VIN0001">VIN0001</option>
-            <option value="VIN0002">VIN0002</option>
+            {accounts.map((account) => (
+              <option key={account.id} value={account.number.replace('VIN-', '')}>
+                {account.number}
+              </option>
+            ))}
           </select>
         </div>
         <div className="mb-4">
@@ -85,21 +163,20 @@ const LoanForm = () => {
           </div>
           <div className="h-6">
             {loanType && (
-              <p className="text-sm text-gray-500">Max amount for {loanType} loan is ${maxAmount}</p>
+              <p className="text-sm text-gray-500">Max amount for selected loan is ${maxAmount}</p>
             )}
           </div>
         </div>
         <div className="mb-4">
-          <label htmlFor="paymentTerm" className="block text-gray-700 mb-2">Payment</label>
+          <label htmlFor="paymentTerm" className="block text-gray-700 mb-2">Payment Term</label>
           <select
             id="paymentTerm"
             value={paymentTerm}
             onChange={(event) => setPaymentTerm(event.target.value)}
             className="block w-full p-2 border border-gray-300 rounded"
           >
-            <option value= "" disabled>Select a payment term</option>
-            {/* MAPEO PLAZO */}
-            {paymentOptions.map((term) => (
+            <option value="" disabled>Select a payment term</option>
+            {(paymentOptions || []).map((term) => (
               <option key={term} value={term}>{term} months</option>
             ))}
           </select>

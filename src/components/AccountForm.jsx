@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
 const AccountForm = () => {
@@ -6,9 +7,26 @@ const AccountForm = () => {
     const [birthDate, setBirthDate] = useState('');
     const [country, setCountry] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        alert('The request was successfully sent!');
+
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.post(
+                'http://localhost:8080/api/clients/current/accounts',
+                {},
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
+            console.log(response.data);
+            alert('Created account successfully');
+        } catch (error) {
+            console.error(error);
+            alert('Error creating account');
+        }
     };
 
     return (
@@ -79,4 +97,6 @@ const AccountForm = () => {
 };
 
 export default AccountForm;
+
+
 

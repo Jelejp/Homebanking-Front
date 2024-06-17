@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
 import Link from './Link';
 import { links } from '../utils/listaLinks';
+import { useDispatch } from 'react-redux';
+import { logout } from '../actions/authActions';
+import { Link as LinkR } from 'react-router-dom';
 
 const Menu = () => {
+  const dispatch = useDispatch();
   //DECLARO ESTADO PARA VER SI EL MENU ESTA ABIERTO O NO
   const [menuAbierto, setMenuAbierto] = useState(false);
+
+    // Función para manejar el cierre de sesión
+    const handleLogout = () => {
+      dispatch(logout()); // Dispara la acción de cerrar sesión
+      localStorage.removeItem('token'); // Limpia token u otra información en localStorage
+      //return <Navigate to="/" replace />;
+      return <LinkR to="/"/>
+  };
 
   //FUNCION PARA CAMBIAR EL ESTADO
   const toggleMenu = () => {
@@ -18,7 +30,7 @@ const Menu = () => {
         onClick={toggleMenu}
       >
         <div>
-          <img src="src\assets\icons-menu.png" alt="icon menu" />
+          <img className='w-[25px]' src="src\assets\icons8-menu-50.png" alt="icon menu" />
         </div>
       </button>
 
@@ -30,6 +42,11 @@ const Menu = () => {
             {
               links.map(link => <Link key={link.name} name={link.name} route={link.route} icon={link.icon} colour={link.colour} />)
             }
+
+          {/* Opción de cerrar sesión */}
+          <button onClick={handleLogout} className="text-red-500 hover:text-red-700">
+           Logout
+           </button>
           </nav>
         </div>
       )}
