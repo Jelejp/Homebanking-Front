@@ -3,7 +3,6 @@ import Menu from '../components/Menu';
 import axios from 'axios';
 import CarouselAccount from '../components/CarouselAccount';
 import { Button } from 'flowbite-react';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 

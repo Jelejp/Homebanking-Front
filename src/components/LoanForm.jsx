@@ -181,8 +181,7 @@ const LoanForm = () => {
             ))}
           </select>
         </div>
-        <button
-          type="submit"
+        <button type="submit"
           className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
         >
           Request

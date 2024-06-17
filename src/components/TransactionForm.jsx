@@ -102,8 +102,7 @@ const TransactionForm = () => {
               Own
             </label>
             <label className="inline-flex items-center">
-              <input
-                type="radio"
+              <input type="radio"
                 value="Others"
                 checked={destinationType === 'Others'}
                 onChange={() => setDestinationType('Others')}

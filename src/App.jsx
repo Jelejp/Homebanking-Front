@@ -18,42 +18,42 @@ import { useSelector } from 'react-redux'
 const routesAuth = [
   {
     path: '/accounts',
-    element: <Accounts/>,
+    element: <Accounts />,
     key: 'Accounts',
   },
   {
     path: '/cards',
-    element: <Cards/>,
+    element: <Cards />,
     key: 'Cards',
   },
   {
     path: '/loans',
-    element: <Loans/>,
+    element: <Loans />,
     key: 'Loans',
   },
   {
     path: '/apply-loan',
-    element: <ApllyLoan/>,
+    element: <ApllyLoan />,
     key: 'ApplyLoan',
   },
   {
     path: '/transactions',
-    element: <Transactions/>,
+    element: <Transactions />,
     key: 'Transactions',
   },
   {
     path: '/apply-card',
-    element: <ApplyCard/>,
+    element: <ApplyCard />,
     key: 'ApplyCard',
   },
   {
     path: '/create-account',
-    element: <CreateAccount/>,
+    element: <CreateAccount />,
     key: 'CreateAccount',
   },
   {
     path: "/account/:id",
-    element: <Account/>,
+    element: <Account />,
     key: 'Account',
   },
 
@@ -61,18 +61,18 @@ const routesAuth = [
 const routesNoAuth =
   [{
     path: '/login',
-    element: <Login/>,
+    element: <Login />,
     key: 'login',
   },
   {
     path: '/register',
-    element: <Register/>,
+    element: <Register />,
     key: 'register',
 
   }]
 const routesAll = [{
   path: '/',
-  element: <Home/>,
+  element: <Home />,
   key: 'Home',
 }]
 
@@ -85,39 +85,23 @@ function App() {
   // },[])
 
 
-  const { loggedIn} = useSelector(state => state.auth); 
+  const { loggedIn } = useSelector(state => state.auth);
 
   return (
 
     <BrowserRouter>
       <MainLayount>
         <Routes>
-
-        {/* <Route path="/" element={<Home />} />
           {routesAll.map(route => (
             <Route key={route.key} path={route.path} element={route.element} />
           ))}
 
           {
-            !loggedIn && routesNoAuth.map(route => (
-            <Route key={route.key} path={route.path} element={route.element} />
-            
-          ))}
-          {
-            routesAuth.map(AuthRoute)
-          }
-          <Route path='*' element={<Navigate to='/'/>}/> */}
-
-{routesAll.map(route => (
-            <Route key={route.key} path={route.path} element={route.element} />
-          ))}
-
-          {
-          loggedIn ? routesAuth.map(route => (
-                <Route key={route.key} path={route.path} element= {<AuthRoute element={route.element} />} />
-              ))
-            : 
-            routesNoAuth.map(route => (
+            loggedIn ? routesAuth.map(route => (
+              <Route key={route.key} path={route.path} element={<AuthRoute element={route.element} />} />
+            ))
+              :
+              routesNoAuth.map(route => (
                 <Route key={route.key} path={route.path} element={route.element} />
               ))
           }

@@ -12,25 +12,25 @@ const Loans = () => {
 
     // FUNCION PARA OBTENER LOS DATOS DE LOANS DESDE LA API
     async function getData() {
-      try {
-        const token = localStorage.getItem('token');
-        let response = await axios.get('http://localhost:8080/api/auth/current', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        console.log(response.data);
-        // SE ACTUALIZA EL ESTADO CON LOS DATOS OBTENIDOS
-        setData(response.data.loans); 
-        setLoading(false); // Finaliza la carga una vez se obtienen los datos
-      } catch (error) {
-        console.log(error);
-      }
+        try {
+            const token = localStorage.getItem('token');
+            let response = await axios.get('http://localhost:8080/api/auth/current', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            console.log(response.data);
+            // SE ACTUALIZA EL ESTADO CON LOS DATOS OBTENIDOS
+            setData(response.data.loans);
+            setLoading(false); // Finaliza la carga una vez se obtienen los datos
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     // SE EJECUTA GETDATA AL MONTAR EL COMPONENTE
     useEffect(() => {
-      getData();
+        getData();
     }, []);
 
     return (

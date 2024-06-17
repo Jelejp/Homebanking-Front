@@ -1,7 +1,6 @@
 import React from 'react';
 import Menu from '../components/Menu';
 import TransactionTable from '../components/TransactionTable';
-import CarouselAccount from '../components/CarouselAccount';
 import AccountDetails from '../components/AccountDetails';
 
 const Account = () => {

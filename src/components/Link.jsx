@@ -14,10 +14,9 @@ const Link = (props) => {
         }}
 
         >
-            {/* <span className="flex items-center"> */}
-           {/* <img src={props.icon} alt={`${props.name} icon `} className="h-5 w-5 mr-2"/> */}
+
             {props.name}
-            {/* </span> */}
+          
         </LinkR>
     );
 };

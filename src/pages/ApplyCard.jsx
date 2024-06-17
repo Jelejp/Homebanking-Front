@@ -23,5 +23,4 @@ const ApplyCard = () => {
         </>
     );
 };
-
 export default ApplyCard;

@@ -8,7 +8,7 @@ const HomeLayount = (props) => {
       <main className=' flex min-h-[85vh] w-full flex-col'>
         {props.children}
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 };

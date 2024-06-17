@@ -23,5 +23,4 @@ const ApplyLoan = () => {
         </>
     );
 };
-
 export default ApplyLoan;

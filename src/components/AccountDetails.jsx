@@ -32,10 +32,10 @@ const AccountDetails = () => {
   return (
     <div className='mt-2 flex flex-col items-center lg:mt-8'>
       <div className='bg-white w-[280px] mb-5 h-[180px] p-8 pl-4 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
-      <p className='text-[15px] '>Number of Account {account.number}</p>
-              <p className='text-[15px] '>Amount:</p>
-              <p className='font-bold text-center '>${account.balance}</p>
-              <p className='text-[15px] '>Data of create: {account.createdDate}</p>
+        <p className='text-[15px] '>Number of Account {account.number}</p>
+        <p className='text-[15px] '>Amount:</p>
+        <p className='font-bold text-center '>${account.balance}</p>
+        <p className='text-[15px] '>Data of create: {account.createdDate}</p>
       </div>
     </div>
   );

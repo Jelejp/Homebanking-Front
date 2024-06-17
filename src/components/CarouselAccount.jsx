@@ -7,7 +7,7 @@ const CarouselAccount = () => {
     <Carousel slide={true}>
       <img src="src\assets\banner1.png" alt="Transaction bank" />
       <img src="src\assets\banner2.png" alt="Loan bank" />
-      <img src="src\assets\banner3.png" alt="Card bank" />
+      <img src="src\assets\banner3.png" alt="Card bank" /> 
     </Carousel>
   </div>
   );

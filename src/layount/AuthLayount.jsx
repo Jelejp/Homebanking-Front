@@ -6,11 +6,11 @@ const AuthLayount = (props) => {
 
     return (
         <>
-            <Header/>
+            <Header />
             <main className=' flex min-h-[83vh] w-full flex-col'>
                 {props.children}
             </main>
-            <Footer/>
+            <Footer />
         </>
     );
 };

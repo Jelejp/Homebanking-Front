@@ -9,37 +9,36 @@ const CardForm = () => {
   const [type, setType] = useState('');
   const [color, setColor] = useState('');
 
- //FUNCION PARA ENVIAR LOS DATOS DEL FORMULARIO A LA API
- const handleSubmit = async (event) => {
-  event.preventDefault();
+  //FUNCION PARA ENVIAR LOS DATOS DEL FORMULARIO A LA API
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  try {
-    const token = localStorage.getItem('token');
-    const response = await axios.post('http://localhost:8080/api/clients/current/cards', {
-      type: cardType,
-      color: cardMembership
-    }, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.post('http://localhost:8080/api/clients/current/cards', {
+        type: cardType,
+        color: cardMembership
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
 
-    // Mostrar mensaje de éxito y resetear formulario
-    // alert('Your card was successfully requested');
-    toast.success('Your card was successfully requested', {
-      position: 'top-center'
-    });
-    setCardType('');
-    setCardMembership('');
-  } catch (error) {
-    console.error(error);
-    // alert('There was an error requesting your card');
-    toast.error('There was an error requesting your card', {
-      position: 'top-center'
-    });
-  }
-};
-
+      // Mostrar mensaje de éxito y resetear formulario
+      // alert('Your card was successfully requested');
+      toast.success('Your card was successfully requested', {
+        position: 'top-center'
+      });
+      setCardType('');
+      setCardMembership('');
+    } catch (error) {
+      console.error(error);
+      // alert('There was an error requesting your card');
+      toast.error('There was an error requesting your card', {
+        position: 'top-center'
+      });
+    }
+  };
 
   // //FUNCION PARA MOSTRAR LA ALERTA AL CANCELAR
   // const handleCancel = () => {
@@ -79,7 +78,7 @@ const CardForm = () => {
       </div>
       <div className="flex justify-between">
         <button
-        //cuando se haga click
+          //cuando se haga click
           onClick={handleSubmit}
           className="w-1/2 flex justify-center p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
         >

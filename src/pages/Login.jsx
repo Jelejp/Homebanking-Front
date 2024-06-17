@@ -5,10 +5,10 @@ const Login = () => {
 
     return (
         <>
-        <div className='bg-gradient-to-b from-[#000000] to-[#63edd8] min-h-[86vh]   '>
+            <div className='bg-gradient-to-b from-[#000000] to-[#63edd8] min-h-[86vh]   '>
 
-        <LoginForm/>
-        </div>
+                <LoginForm />
+            </div>
         </>
     );
 };

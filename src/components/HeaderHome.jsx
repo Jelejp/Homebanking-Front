@@ -1,4 +1,3 @@
-// src/components/HeaderHome.jsx
 import React from 'react';
 import { dataHeader } from '../utils/HeaderData';
 import { Link } from 'react-router-dom';
