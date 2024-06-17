@@ -1,16 +1,20 @@
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import AuthLayount from './AuthLayount';
+import HomeLayount from './HomeLayount';
+import { useSelector } from 'react-redux';
 
 const MainLayount = (props) => {
+  const { loggedIn} = useSelector(state => state.auth); 
     return (
+
         <>
-            <Header/>
-            <main className=' flex min-h-[83vh] w-full flex-col'>
-                {props.children}
-            </main>
-            <Footer/>
-        </>
+        {
+        loggedIn ? (
+          <AuthLayount>{props.children}</AuthLayount>
+        ) : (
+            <HomeLayount>{props.children}</HomeLayount>
+        )}
+      </>
     );
 };
 
