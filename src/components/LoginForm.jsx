@@ -15,7 +15,7 @@ const LoginForm = () => {
     event.preventDefault();
     
     try {
-      const response = await axios.post('https://homebanking-3jjh.onrender.com/api/auth/login', { email, password });
+      const response = await axios.post('https://homebanking-1ir2.onrender.com/api/auth/login', { email, password });
       const token = response.data;
 
       // Dispatch the login action with token and user data

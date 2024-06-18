@@ -28,7 +28,7 @@ const TransactionForm = () => {
         return;
       }
 
-      const response = await axios.post('https://homebanking-3jjh.onrender.com/api/transactions/', { 
+      const response = await axios.post('https://homebanking-1ir2.onrender.com/api/transactions/', { 
         amount: parseFloat(amount), 
         description, 
         sourceAccount: fullSourceAccount, 
@@ -67,7 +67,7 @@ const TransactionForm = () => {
         return;
       }
 
-      const response = await axios.get('https://homebanking-3jjh.onrender.com/api/clients/current/accounts', {
+      const response = await axios.get('https://homebanking-1ir2.onrender.com/api/clients/current/accounts', {
         headers: {
           'Authorization': `Bearer ${token}`
         }

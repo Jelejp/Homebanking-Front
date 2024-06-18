@@ -18,7 +18,7 @@ const TransactionTable = () => {
     const getDataTransaction = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`https://homebanking-3jjh.onrender.com/api/clients/current/accounts/${id}`, {
+            const response = await axios.get(`https://homebanking-1ir2.onrender.com/api/clients/current/accounts/${id}`, {
               headers: {
                 'Authorization': `Bearer ${token}`
               }

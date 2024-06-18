@@ -13,7 +13,7 @@ const AccountForm = () => {
         try {
             const token = localStorage.getItem('token');
             const response = await axios.post(
-                'https://homebanking-3jjh.onrender.com/api/clients/current/accounts',
+                'https://homebanking-1ir2.onrender.com/api/clients/current/accounts',
                 {},
                 {
                     headers: {

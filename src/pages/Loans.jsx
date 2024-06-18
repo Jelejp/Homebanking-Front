@@ -14,7 +14,7 @@ const Loans = () => {
     async function getData() {
         try {
             const token = localStorage.getItem('token');
-            let response = await axios.get('https://homebanking-3jjh.onrender.com/api/auth/current', {
+            let response = await axios.get('https://homebanking-1ir2.onrender.com/api/auth/current', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
