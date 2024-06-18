@@ -10,7 +10,7 @@ const AccountDetails = () => {
   const getAccountDetails = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:8080/api/clients/current/accounts/${id}`, {
+      const response = await axios.get(`https://homebanking-3jjh.onrender.com/api/clients/current/accounts/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

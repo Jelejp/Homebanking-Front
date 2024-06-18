@@ -15,7 +15,7 @@ const CardForm = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post('http://localhost:8080/api/clients/current/cards', {
+      const response = await axios.post('https://homebanking-3jjh.onrender.com/api/clients/current/cards', {
         type: cardType,
         color: cardMembership
       }, {

@@ -36,7 +36,7 @@ const RegisterForm = () => {
     }
   
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/signup', { 
+      const response = await axios.post('https://homebanking-3jjh.onrender.com/api/auth/signup', { 
         firstName, lastName, email, password });
       console.log(response.data);
       alert('Registration successful! Please log in.');

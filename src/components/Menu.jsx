@@ -40,7 +40,7 @@ const Menu = () => {
           <nav className="mt-2 space-y-2">
             {/* PARA CADA LINK SE CREA UN LINK */}
             {
-              links.map(link => <Link key={link.name} name={link.name} route={link.route} icon={link.icon} colour={link.colour} />)
+              links.map(link => <Link key={link.name} name={link.name} route={link.route} />)
             }
 
           {/* Opción de cerrar sesión */}

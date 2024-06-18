@@ -25,7 +25,7 @@ const Header = () => {
             </h1>
             <nav className="ml-4 pl-10 hidden md:flex items-center space-x-4"> {/* Mostrar en pantallas medianas y más grandes */}
                 {links.map(link => (
-                    <Link key={link.name} name={link.name} route={link.route} icon={link.icon} colour={link.colour} />
+                    <Link key={link.name} name={link.name} route={link.route}/>
                 ))}
             {/* Opción de cerrar sesión */}
           <button onClick={handleLogout} className="text-red-500 hover:text-red-700 mt-[6px]">

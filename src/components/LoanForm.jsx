@@ -38,7 +38,7 @@ const LoanForm = () => {
         return;
       }
 
-      const response = await axios.get('http://localhost:8080/api/clients/current/accounts', {
+      const response = await axios.get('https://homebanking-3jjh.onrender.com/api/clients/current/accounts', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -54,7 +54,7 @@ const LoanForm = () => {
   const getLoans = async () => {
     try {
       const token = localStorage.getItem('token');
-      let response = await axios.get('http://localhost:8080/api/loans', {
+      let response = await axios.get('https://homebanking-3jjh.onrender.com/api/loans', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -93,7 +93,7 @@ const LoanForm = () => {
         return;
       }
 
-      let response = await axios.post('http://localhost:8080/api/loans', data, {
+      let response = await axios.post('https://homebanking-3jjh.onrender.com/api/loans', data, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
