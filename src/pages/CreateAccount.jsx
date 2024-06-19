@@ -16,7 +16,7 @@ const CreateAccount = () => {
                 <section className=' flex justify-center lg:bg-white lg:justify-around lg:h-[465px] lg:w-[950px] lg:ml-auto lg:mr-auto mt-[150px] lg:rounded-md'>
                     <AccountForm />
                     <div className='hidden lg:block lg:w-[400px] lg:items-center '>
-                        <img src="src\assets\createAccount.png" alt="Card" className='' />
+                        <img src="..\assets\createAccount.png" alt="Card" className='' />
                     </div>
                 </section>
             </div>

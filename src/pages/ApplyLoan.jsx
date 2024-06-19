@@ -15,7 +15,7 @@ const ApplyLoan = () => {
                 <section className=' flex justify-center lg:justify-around'>
                     <LoanForm />
                     <div className='hidden lg:block lg:w-[450px] '>
-                        <img src="src\assets\loan.png" alt="" />
+                        <img src="..\assets\loan.png" alt="" />
                     </div>
                 </section>
             </div>
