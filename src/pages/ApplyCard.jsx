@@ -15,7 +15,7 @@ const ApplyCard = () => {
             <section className=' flex justify-center  lg:bg-white lg:justify-around lg:h-[325px] lg:w-[950px] mt-[100px] ml-auto mr-auto lg:rounded-md'>
                 <CardForm />
                 <div className='hidden lg:block lg:w-[400px] lg:items-center '>
-                    <img src="public\applyCard.png" alt="Card" className='' />
+                    <img src="/applyCard.png" alt="Card" className='' />
                 </div>
             </section>
 

@@ -103,7 +103,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="md:w-1/3 mt-6 md:mt-0 md:ml-6 flex justify-center">
-                <img className='w-[300px] rounded-lg' src='public\home-Security.png' alt="Seguridad" />
+                <img className='w-[300px] rounded-lg' src='/home-Security.png' alt="Seguridad" />
               </div>
             </div>
             <div className="flex-1"></div>
