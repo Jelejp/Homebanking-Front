@@ -5,9 +5,9 @@ const CarouselAccount = () => {
   return (
     <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
     <Carousel slide={true}>
-      <img src="..\assets\banner1.png" alt="Transaction bank" />
-      <img src="..\assets\banner2.png" alt="Loan bank" />
-      <img src="..\assets\banner3.png" alt="Card bank" /> 
+      <img src="public\banner1.png" alt="Transaction bank" />
+      <img src="public\banner2.png" alt="Loan bank" />
+      <img src="public\banner3.png" alt="Card bank" /> 
     </Carousel>
   </div>
   );

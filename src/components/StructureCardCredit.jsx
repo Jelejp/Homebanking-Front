@@ -65,14 +65,14 @@ const StructureCardCredit = () => {
                                     <p className="absolute tracking-wide text-xs top-2 left-2">{card.type}</p>
                                     <p className="absolute tracking-wide text-xs top-4 right-4">MASTERCARD</p>
                                     <div className='absolute top-[37px] left-4'>
-                                        <img className="w-[30px]" src="..\assets\card-chip.png" alt="chip" />
+                                        <img className="w-[30px]" src="public\card-chip.png" alt="chip" />
                                     </div>
                                     <p className="absolute font-bold text-xg top-[74px] left-4">{card.number}</p>
                                     <p className="absolute font-medium text-[9px] top-[100px] left-4">VALID THRU</p>
                                     <p className="date_8264 absolute font-medium text-[9px] top-[115px] left-4">{card.thruDate}</p>
                                     <p className="absolute font-bold text-[10px] top-[132px] left-4">{card.cardholder}</p>
                                     <div className='absolute bottom-[9px] right-4'>
-                                        <img className="w-[40px]" src="..\assets\Mastercard-Logo.png" alt="logo" />
+                                        <img className="w-[40px]" src="public\Mastercard-Logo.png" alt="logo" />
                                     </div>
                                 </div>
                                 {/* Back Side */}

@@ -30,7 +30,7 @@ const Menu = () => {
         onClick={toggleMenu}
       >
         <div>
-          <img className='w-[25px]' src="..\assets\icons8-menu-50.png" alt="icon menu" />
+          <img className='w-[25px]' src="public\icons8-menu-50.png" alt="icon menu" />
         </div>
       </button>
 

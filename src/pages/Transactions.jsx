@@ -15,7 +15,7 @@ const Transactions = () => {
                 <section className=' flex justify-center lg:justify-around  lg:w-[950px] lg:mt-[100px] ml-auto mr-auto lg:rounded-md'>
                     <TransactionForm />
                     <div className='hidden lg:block lg:w-[400px] lg:items-center '>
-                        <img src="..\assets\transaction.png" alt="Card" className='' />
+                        <img src="public\transaction.png" alt="Card" className='' />
                     </div>
                 </section>
             </div>
