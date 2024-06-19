@@ -7,7 +7,7 @@ const Footer = () => {
         <div className='flex ml-4 justify-end items-end'>
         <a href="https://github.com/Jelejp"><img className='w-[35px]' src="src\assets\icons8-github-48.png" alt="github" /></a>
         <a href="https://ar.linkedin.com/"><img className='w-[35px]' src="src\assets\icons8-linkedin-48.png" alt="facebook" /></a>
-        <a href="https://www.instagram.com"><img className='w-[35px]' src="src\assets\icons8-instagram-48.png" alt="instagram" /></a>
+        <a href="https://www.instagram.com"><img className='w-[35px]' src="..\assets\icons8-instagram-48.png" alt="instagram" /></a>
         </div>
       </footer>
     );
