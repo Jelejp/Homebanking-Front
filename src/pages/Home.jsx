@@ -103,10 +103,9 @@ const Home = () => {
                 </div>
               </div>
               <div className="md:w-1/3 mt-6 md:mt-0 md:ml-6 flex justify-center">
-                <img className='w-[300px] rounded-lg' src='src/assets/home-Security.png' alt="Seguridad" />
+                <img className='w-[300px] rounded-lg' src='..\assets\home-Security.png' alt="Seguridad" />
               </div>
             </div>
-            {/* Nuevo elemento para ocupar el resto del espacio */}
             <div className="flex-1"></div>
             {/* Contenido adicional */}
             <div className="text-center mt-8">
