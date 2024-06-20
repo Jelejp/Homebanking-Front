@@ -104,11 +104,11 @@ const RegisterForm = () => {
           />
           {passwordError && <span className="text-red-500 text-sm mt-1">{passwordError}</span>}
         </label>
-        <Link to="/login">
+     
         <button className="border-0 outline-0 p-3 md:p-4 rounded-md md:rounded-lg text-white text-lg md:text-xl bg-[#63efda] transition-transform duration-300 hover:bg-[#2fa493] w-full">
           Submit
         </button>
-        </Link>
+    
         <p className="text-center text-sm md:text-base text-[rgba(255,255,255,0.7)] mt-4">
           Already have an account?<Link to="/login" className="text-[#63edd8] hover:underline"> Signin</Link>
         </p>
